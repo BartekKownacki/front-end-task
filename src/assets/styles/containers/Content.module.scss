@@ -1,0 +1,17 @@
+@import 'assets/styles/import.scss';
+
+.content-section{
+  width: 60%;
+}
+
+.frame{
+  max-width: 100%;
+}
+
+@media (max-width: $col-xs) { 
+  .content-section{
+      max-width: 100%;
+      width: 100%;
+  }
+
+}

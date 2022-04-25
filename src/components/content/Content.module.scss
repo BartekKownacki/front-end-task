@@ -1,0 +1,15 @@
+.search-row{
+  &__form{
+    display: flex;
+    width: 100%;
+    gap: 5%;
+    align-items: center;
+    &--input{
+      width: 60%;
+    }
+    &--button{
+      width: 30%;
+      max-height: 45px;
+    }
+  }
+}
