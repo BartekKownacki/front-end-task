@@ -15,6 +15,11 @@ export function app(state = initState, action) {
         //TODO CHECK
         previousSearches: action.records.filter((item) => item.length > 0),
       };
+    case "SET_USER_DATA":
+      return {
+        ...state,
+        userData: action.userData,
+      };
 
     default:
       return state;

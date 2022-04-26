@@ -8,12 +8,11 @@
 }
 
 .frame{
-    max-width: 35%;
+    width: 25%;
 }
 
 @media (max-width: $col-xs) { 
     .frame{
-        max-width: 100%;
         width: 100%;
     }
 

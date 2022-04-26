@@ -1,7 +1,16 @@
+@import 'assets/styles/import.scss';
+
 .container{
     display: flex;
-    gap: 5%;
+    gap: 2%;
     width: 100%;
     justify-content: space-around;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
+}
+
+@media (max-width: $col-xs) { 
+    .container{
+        row-gap: 5%;
+    }
+
 }

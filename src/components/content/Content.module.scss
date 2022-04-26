@@ -2,14 +2,33 @@
   &__form{
     display: flex;
     width: 100%;
-    gap: 5%;
+    gap: 2%;
     align-items: center;
+    justify-content: space-between;
     &--input{
-      width: 60%;
+      width: 78%;
     }
     &--button{
-      width: 30%;
+      width: 20%;
       max-height: 45px;
     }
+  }
+}
+
+.user-row{
+  display: flex;
+  width: 100%;
+  gap: 2%;
+  align-items: center;
+  justify-content: space-between;
+
+  .map-frame{
+    width: 58%;
+    padding: 5px;
+  }
+  .info-frame{
+    width: 40%;
+    height: 100%;
+    padding: 20px;
   }
 }

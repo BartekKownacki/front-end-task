@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form, Row } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { AppActions } from "store/app.actions";
 import Frame from "elements/Frame/Frame";
@@ -12,30 +12,33 @@ const SearchRow = ({ frameStyles }) => {
   const dispatch = useDispatch();
   const ipv4Regex =
     /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  const urlRegex =
+    /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
   const handleClick = (e) => {
     e.preventDefault();
     const inputValue = e.target.elements.formIpInput.value;
-    if (validateIp(inputValue)) {
+    if (validateSearch(inputValue)) {
       sessionStorage.setItem(
         "previousSearches",
         [sessionStorage.getItem("previousSearches"), inputValue].join(",")
       );
       dispatch(AppActions.addNewRecord(inputValue));
     } else {
-      alert("Invalid IP address");
+      alert("Invalid IP address URL");
     }
   };
 
-  const validateIp = (value) => {
-    if (ipv4Regex.test(value)) {
+  const validateSearch = (value) => {
+    if (ipv4Regex.test(value) || urlRegex.test(value)) {
       return true;
+    } else {
+      return false;
     }
-    return false;
   };
 
   return (
-    <Row>
+    <section className={styles["search-row"]}>
       <Form onSubmit={handleClick} className={styles["search-row__form"]}>
         <Frame
           elementStyle={[frameStyles, styles["search-row__form--input"]].join(
@@ -43,7 +46,7 @@ const SearchRow = ({ frameStyles }) => {
           )}
         >
           <Form.Group controlId="formIpInput">
-            <Form.Control type="search" placeholder="Enter IP address" />
+            <Form.Control type="search" placeholder="Enter IP address or URL" />
           </Form.Group>
         </Frame>
         <Button
@@ -54,7 +57,7 @@ const SearchRow = ({ frameStyles }) => {
           Submit
         </Button>
       </Form>
-    </Row>
+    </section>
   );
 };
 
