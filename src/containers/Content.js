@@ -6,6 +6,7 @@ import SearchMapRow from 'components/Content/SearchMapRow';
 import styles from 'assets/styles/containers/Content.module.scss';
 
 const Content = () => {
+
   return (
     <section className={styles['content-section']}>
       <UserRow frameStyles={styles['frame']} />

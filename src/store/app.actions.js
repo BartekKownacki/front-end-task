@@ -23,9 +23,19 @@ const setLoading = (isLoading) => ({
   isLoading,
 });
 
+const setUserLoading = (isLoading) => ({
+  type: 'SET_USER_LOADING',
+  isLoading,
+});
+
 const setDefaultSeachValue = (defaultSearchValue) => ({
   type: 'SET_DEFAULT_SEARCH_VALUE',
   defaultSearchValue,
+});
+
+const setApiError = (apiError) => ({
+  type: 'SET_API_ERROR',
+  apiError,
 });
 
 export const AppActions = {
@@ -34,5 +44,7 @@ export const AppActions = {
   setUserData,
   setSearchLocationData,
   setLoading,
+  setUserLoading,
   setDefaultSeachValue,
+  setApiError,
 };

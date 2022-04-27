@@ -30,10 +30,20 @@ export function app(state = initState, action) {
         ...state,
         isLoading: action.isLoading,
       };
+    case 'SET_USER_LOADING':
+      return {
+        ...state,
+        isLoading: action.isLoading,
+      };
     case 'SET_DEFAULT_SEARCH_VALUE':
       return {
         ...state,
         defaultSearchValue: action.defaultSearchValue,
+      };
+    case 'SET_API_ERROR':
+      return {
+        ...state,
+        apiError: action.apiError,
       };
 
     default:

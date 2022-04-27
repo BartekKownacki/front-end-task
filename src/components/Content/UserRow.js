@@ -17,8 +17,8 @@ const UserRow = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.app.userData);
   useEffect(() => {
-    dispatch(AppActions.setLoading(true));
-    get("check").then((res) => {
+    dispatch(AppActions.setUserLoading(true));
+    get("check").then(res => {
       const userDataToDispatch = {
         ip: res.ip,
         country: res.country_name,
@@ -28,9 +28,8 @@ const UserRow = (props) => {
         latitude: res.latitude,
         longitude: res.longitude,
       };
-
       dispatch(AppActions.setUserData(userDataToDispatch));
-      dispatch(AppActions.setLoading(false));
+      dispatch(AppActions.setUserLoading(false));
     });
   }, [true]);
 
@@ -41,7 +40,7 @@ const UserRow = (props) => {
       </Frame>
       <Frame elementStyle={styles["info-frame"]}>
         <TitleSmall text="User info" />
-        <InfoFrame data={userData} />
+        <InfoFrame data={userData} isUserLocation={true}/>
       </Frame>
     </section>
   );

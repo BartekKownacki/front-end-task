@@ -1,7 +1,9 @@
 export const appInitialState = {
   isLoading: false,
+  isUserLoading: false,
   previousSearches: [],
   defaultSearchValue: '',
+  apiError: false,
   userData: {
     ip: '',
     country: '',

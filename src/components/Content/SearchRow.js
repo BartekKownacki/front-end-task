@@ -3,12 +3,12 @@ import { Button, Form } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions } from 'store/app.actions';
 import Frame from 'elements/Frame/Frame';
-
 import PropTypes from 'prop-types';
 
 import styles from './Content.module.scss';
 
-import { validateSearch, getLocation } from 'helpers/locationSearch';
+import { get } from 'services/api';
+import { validateSearch } from 'helpers/locationSearch';
 
 const SearchRow = ({ frameStyles }) => {
   const dispatch = useDispatch();
@@ -20,18 +20,31 @@ const SearchRow = ({ frameStyles }) => {
     const inputValue = e.target.elements.formIpInput.value;
     if (validateSearch(inputValue)) {
       dispatch(AppActions.setLoading(true));
-      const searchedLocation = await getLocation(inputValue);
-      dispatch(AppActions.setSearchLocationData(searchedLocation));
-      const lastSearch = previousSearches.length > 0 ? previousSearches[previousSearches.length - 1] : '';
-      if (lastSearch.trim() !== inputValue.trim()) {
-        dispatch(AppActions.addNewRecord(inputValue.trim()));
-        if (previousSearches.length > 0) {
-          sessionStorage.setItem('previousSearches', [sessionStorage.getItem('previousSearches'), inputValue.trim()].join(','));
-        } else {
-          sessionStorage.setItem('previousSearches', inputValue.trim());
+      get(inputValue).then(res => {
+        if(!res){
+          return;
         }
-      }
-      dispatch(AppActions.setLoading(false));
+        const searchedLocation = {
+          ip: res.ip,
+          country: res.country_name,
+          continent: res.continent_name,
+          city: res.city,
+          capital: res.location.capital,
+          latitude: res.latitude,
+          longitude: res.longitude,
+        };
+        dispatch(AppActions.setSearchLocationData(searchedLocation));
+        const lastSearch = previousSearches.length > 0 ? previousSearches[previousSearches.length - 1] : '';
+        if (lastSearch.trim() !== inputValue.trim()) {
+          dispatch(AppActions.addNewRecord(inputValue.trim()));
+          if (previousSearches.length > 0) {
+            sessionStorage.setItem('previousSearches', [sessionStorage.getItem('previousSearches'), inputValue.trim()].join(','));
+          } else {
+            sessionStorage.setItem('previousSearches', inputValue.trim());
+          }
+        }
+        dispatch(AppActions.setLoading(false));
+      });
     } else {
       alert('Invalid IP address URL');
     }

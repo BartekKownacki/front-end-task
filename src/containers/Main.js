@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import PreviousSearches from "./PreviousSearches";
 import Content from "./Content";
-
-import { useDispatch } from "react-redux";
+import ErrorRow from "./ErrorRow";
+import { useDispatch, useSelector } from "react-redux";
 import { AppActions } from "store/app.actions";
 
 import styles from "assets/styles/containers/Main.module.scss";
 
 const Main = () => {
   const dispatch = useDispatch();
-
+  const apiError = useSelector((state) => state.app.apiError);
   //restore session
   useEffect(() => {
     const sessionStorageData = sessionStorage.getItem("previousSearches");
@@ -21,6 +21,9 @@ const Main = () => {
 
   return (
     <Container className={styles["container"]}>
+      {apiError && 
+        <ErrorRow />
+      }
       <PreviousSearches />
       <Content />
     </Container>

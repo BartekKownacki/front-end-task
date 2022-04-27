@@ -8,16 +8,17 @@ import styles from './InfoFrame.module.scss';
 
 import Loading from 'elements/Loading/Loading';
 
-const InfoFrame = ({ data }) => {
-  const isLoading = useSelector((state) => state.app.isLoading);
+const InfoFrame = ({ data, isUserLocation }) => {
+  const isLoading = useSelector((state) => (isUserLocation ? state.app.isUserLoading : state.app.isLoading));
+  const apiError = useSelector((state) => state.app.apiError);
 
   return (
     <>
-      {isLoading ? (
+      {( isLoading || apiError ) ? (
         <section className={styles['loading']}>
           <Loading />
         </section>
-      ) : data.ip.length > 0 ? (
+      ) : data.ip ? (
         <section className={styles['info']}>
           {infoFields.map((field, index) => (
             <div key={index} className={styles['info__field']}>

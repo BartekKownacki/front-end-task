@@ -12,17 +12,20 @@ import { validateSearch, getLocation } from 'helpers/locationSearch';
 const PreviousSearches = () => {
   const dispatch = useDispatch();
   const previousSearches = useSelector((state) => state.app.previousSearches);
+  const isApiError = useSelector((state) => state.app.apiError);
 
   const handleClick = async (item) => {
-    const inputValue = item;
-    if (validateSearch(inputValue)) {
-      dispatch(AppActions.setLoading(true));
-      const searchedLocation = await getLocation(inputValue);
-      dispatch(AppActions.setDefaultSeachValue(inputValue));
-      dispatch(AppActions.setSearchLocationData(searchedLocation));
-      dispatch(AppActions.setLoading(false));
-    } else {
-      alert('Invalid IP address URL');
+    if(!isApiError){  
+      const inputValue = item;
+      if (validateSearch(inputValue)) {
+        dispatch(AppActions.setLoading(true));
+        const searchedLocation = await getLocation(inputValue);
+        dispatch(AppActions.setDefaultSeachValue(inputValue));
+        dispatch(AppActions.setSearchLocationData(searchedLocation));
+        dispatch(AppActions.setLoading(false));
+      } else {
+        alert('Invalid IP address URL');
+      }
     }
   };
 
