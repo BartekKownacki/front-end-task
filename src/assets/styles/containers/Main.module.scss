@@ -2,15 +2,15 @@
 
 .container{
     display: flex;
-    gap: 2%;
+    gap: 20px;
     width: 100%;
     justify-content: space-around;
     flex-wrap: wrap-reverse;
 }
 
-@media (max-width: $col-xs) { 
+@media (max-width: $col-desktop) { 
     .container{
-        row-gap: 5%;
+        row-gap: 20px;
     }
 
 }

@@ -17,7 +17,8 @@ const UserRow = (props) => {
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.app.userData);
   useEffect(() => {
-    get("check", true).then((res) => {
+    dispatch(AppActions.setLoading(true));
+    get("check").then((res) => {
       const userDataToDispatch = {
         ip: res.ip,
         country: res.country_name,
@@ -29,6 +30,7 @@ const UserRow = (props) => {
       };
 
       dispatch(AppActions.setUserData(userDataToDispatch));
+      dispatch(AppActions.setLoading(false));
     });
   }, [true]);
 

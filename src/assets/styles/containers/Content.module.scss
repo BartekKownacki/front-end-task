@@ -3,7 +3,7 @@
 .content-section{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
   width: 73%;
 }
 
@@ -12,7 +12,7 @@
   max-width: 100%;
 }
 
-@media (max-width: $col-xs) { 
+@media (max-width: $col-desktop) { 
   .content-section{
       max-width: 100%;
       width: 100%;

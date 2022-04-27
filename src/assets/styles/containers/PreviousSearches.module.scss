@@ -4,14 +4,20 @@
     display: flex;
     width: 100%;
     flex-wrap: wrap;
-    justify-content: space-around;
+    height: 92%;
+    overflow-y: auto;
+
+    p{
+        text-align: center;
+        width: 100%
+    }
 }
 
 .frame{
-    width: 25%;
+    width: 24%;
 }
 
-@media (max-width: $col-xs) { 
+@media (max-width: $col-desktop) { 
     .frame{
         width: 100%;
     }

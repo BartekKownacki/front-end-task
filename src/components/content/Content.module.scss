@@ -1,24 +1,37 @@
+@import 'assets/styles/import.scss';
+
 .search-row{
   &__form{
     display: flex;
     width: 100%;
-    gap: 2%;
+    height:45px;
+    gap: 20px;
     align-items: center;
     justify-content: space-between;
     &--input{
       width: 78%;
     }
-    &--button{
-      width: 20%;
-      max-height: 45px;
-    }
+  }
+}
+
+.search-row__form--button{
+  background-color: #283044 !important;
+  border-color: #283044 !important;
+  box-shadow: 0 1px 3px 0 rgba(155, 133, 123, 0.28);
+  width: 20%;
+  height: 45px;
+  position: relative;
+
+  &:hover{
+    background-color: #686868 !important;
+    border-color: #686868 !important;
   }
 }
 
 .user-row{
   display: flex;
   width: 100%;
-  gap: 2%;
+  gap: 20px;
   align-items: center;
   justify-content: space-between;
 
@@ -27,8 +40,24 @@
     padding: 5px;
   }
   .info-frame{
-    width: 40%;
+    width: 50%;
     height: 100%;
     padding: 20px;
   }
+}
+
+@media (max-width: $col-desktop) { 
+  .user-row{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      .map-frame{
+        width: 100%;
+      }
+      .info-frame{
+          width: 100%;
+      }
+  }
+  
 }
