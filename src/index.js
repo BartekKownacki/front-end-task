@@ -1,11 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
-import App from './App';
-
 import store from 'store/store';
 
-import main from 'assets/styles/import.scss';
+import App from './App';
+
+import main from 'assets/styles/import.scss'; // eslint-disable-line no-unused-vars
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppActions } from 'store/app.actions';
+
 import Frame from 'elements/Frame/Frame';
-import PropTypes from 'prop-types';
-
-import styles from './Content.module.scss';
-
 import { get } from 'services/api';
 import { validateSearch } from 'helpers/locationSearch';
+
+import styles from './Content.module.scss';
 
 const SearchRow = ({ frameStyles }) => {
   const dispatch = useDispatch();
@@ -20,8 +20,8 @@ const SearchRow = ({ frameStyles }) => {
     const inputValue = e.target.elements.formIpInput.value;
     if (validateSearch(inputValue)) {
       dispatch(AppActions.setLoading(true));
-      get(inputValue).then(res => {
-        if(!res){
+      get(inputValue).then((res) => {
+        if (!res) {
           return;
         }
         const searchedLocation = {

@@ -10,8 +10,8 @@ export const appInitialState = {
     continent: '',
     city: '',
     capital: '',
-    latitude: '',
-    longitude: '',
+    latitude: null,
+    longitude: null,
   },
   searchedLocation: {
     ip: '',
@@ -19,7 +19,7 @@ export const appInitialState = {
     continent: '',
     city: '',
     capital: '',
-    latitude: '',
-    longitude: '',
+    latitude: null,
+    longitude: null,
   },
 };

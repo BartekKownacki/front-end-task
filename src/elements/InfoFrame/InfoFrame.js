@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-import infoFields from 'assets/constants/infoFields';
 import { useSelector } from 'react-redux';
 
-import styles from './InfoFrame.module.scss';
-
+import infoFields from 'assets/constants/infoFields';
 import Loading from 'elements/Loading/Loading';
+
+import styles from './InfoFrame.module.scss';
 
 const InfoFrame = ({ data, isUserLocation }) => {
   const isLoading = useSelector((state) => (isUserLocation ? state.app.isUserLoading : state.app.isLoading));
@@ -14,7 +13,7 @@ const InfoFrame = ({ data, isUserLocation }) => {
 
   return (
     <>
-      {( isLoading || apiError ) ? (
+      {isLoading || apiError ? (
         <section className={styles['loading']}>
           <Loading />
         </section>
@@ -34,6 +33,11 @@ const InfoFrame = ({ data, isUserLocation }) => {
       )}
     </>
   );
+};
+
+InfoFrame.propTypes = {
+  data: PropTypes.object.isRequired,
+  isUserLocation: PropTypes.bool,
 };
 
 export default InfoFrame;

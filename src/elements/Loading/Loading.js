@@ -1,12 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
 
-import { ReactComponent as YourSvg } from "assets/images/tail-spin.svg";
+import { ReactComponent as SpinnerSVG } from 'assets/images/tail-spin.svg';
 
-const Loading = (props) => {
-  return <YourSvg />;
+const Loading = () => {
+  return <SpinnerSVG />;
 };
-
-Loading.propTypes = {};
 
 export default Loading;

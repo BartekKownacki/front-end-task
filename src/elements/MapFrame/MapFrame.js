@@ -1,17 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 
 import styles from './MapFrame.module.scss';
-import { LatLng } from 'leaflet';
 
 const BASIC_POSITION = [53, 10];
 const BASIC_ZOOM = 4;
 
-const MapFrame = ({ latitude, longitude, onClick }) => {
-  const [position, setPosition] = useState(BASIC_POSITION);
-  const [zoom, setZoom] = useState(BASIC_ZOOM);
-
+const MapFrame = ({ latitude, longitude }) => {
   return (
     <MapContainer center={BASIC_POSITION} zoom={BASIC_ZOOM} scrollWheelZoom={true} className={styles['map-frame']}>
       <ZoomingComponent longitude={longitude} latitude={latitude} />
@@ -24,9 +20,10 @@ const MapFrame = ({ latitude, longitude, onClick }) => {
   );
 };
 
-MapFrame.propTypes = {};
-
-export default MapFrame;
+MapFrame.propTypes = {
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+};
 
 const ZoomingComponent = ({ longitude, latitude }) => {
   const map = useMap();
@@ -36,3 +33,5 @@ const ZoomingComponent = ({ longitude, latitude }) => {
   });
   return null;
 };
+
+export default MapFrame;

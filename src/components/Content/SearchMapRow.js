@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import MapFrame from 'elements/MapFrame/MapFrame';
 import InfoFrame from 'elements/InfoFrame/InfoFrame';
@@ -8,11 +8,7 @@ import Frame from 'elements/Frame/Frame';
 
 import styles from './Content.module.scss';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { AppActions } from 'store/app.actions';
-
-const SearchMapRow = (props) => {
-  const dispatch = useDispatch();
+const SearchMapRow = () => {
   const searchedLocation = useSelector((state) => state.app.searchedLocation);
 
   return (
@@ -27,7 +23,5 @@ const SearchMapRow = (props) => {
     </section>
   );
 };
-
-SearchMapRow.propTypes = {};
 
 export default SearchMapRow;
